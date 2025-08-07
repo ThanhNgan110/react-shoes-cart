@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// components
+import { Card } from './components/Card'
+import CarItem from './components/CartItem'
+import ProductItem from './components/ProductItem'
+
+// context
+import { useCartContext } from './context/CartContext'
 
 function App() {
-  const [count, setCount] = useState(0)
+	const { products, cart } = useCartContext()
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	return (
+		<div className="mainContent">
+			{/* Product */}
+			<Card title="Our Products">
+				<>
+					{products.map(product => (
+						<ProductItem product={product} key={product.id} />
+					))}
+				</>
+			</Card>
+
+			{/* Cart */}
+			<Card title="Your cart" amount={'$89.97'} total={10}>
+				<>
+					{cart?.map(product => (
+						<CarItem product={product} key={product.id} />
+					))}
+				</>
+			</Card>
+		</div>
+	)
 }
 
 export default App
