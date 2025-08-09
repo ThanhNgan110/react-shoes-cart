@@ -55,9 +55,7 @@ export const CartProvider = ({ children }: React.PropsWithChildren) => {
 			case 'decrease':
 				setCart(prev =>
 					prev.map(item =>
-						item.id === id
-							? { ...item, cartQuantity: item.cartQuantity ?? 0 <= 0 ? 0 : item.cartQuantity ?? -1 }
-							: item,
+						item.id === id ? { ...item, cartQuantity: Math.max((item.cartQuantity ?? 0) - 1, 0) } : item,
 					),
 				)
 				break
