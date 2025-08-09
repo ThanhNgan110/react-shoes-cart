@@ -1,3 +1,4 @@
+import React from 'react'
 import { useCartContext } from '../../context/CartContext'
 
 import type { CartItem, OptionsQuantity } from '../../types'
@@ -58,4 +59,4 @@ const CarItem = ({ product }: CartItemProps) => {
 	)
 }
 
-export default CarItem
+export default React.memo(CarItem)
