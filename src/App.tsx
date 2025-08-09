@@ -1,5 +1,4 @@
 // components
-import { Card } from './components/Card'
 import CarItem from './components/CartItem'
 import ProductItem from './components/ProductItem'
 
@@ -7,27 +6,39 @@ import ProductItem from './components/ProductItem'
 import { useCartContext } from './context/CartContext'
 
 function App() {
-	const { products, cart } = useCartContext()
+	const { products, cart, totalPrice, totalItems } = useCartContext()
 
 	return (
 		<div className="mainContent">
-			{/* Product */}
-			<Card title="Our Products">
-				<>
+			<div className="card">
+				<div className="cardTop">
+					<img alt="" src="https://cdn-icons-png.flaticon.com/512/732/732084.png" />
+				</div>
+				<div className="cardTitle">Our Products</div>
+				<div className="cardBody">
 					{products.map(product => (
-						<ProductItem product={product} key={product.id} />
+						<ProductItem key={product.id} product={product} />
 					))}
-				</>
-			</Card>
+				</div>
+			</div>
 
-			{/* Cart */}
-			<Card title="Your cart" amount={'$89.97'} total={10}>
-				<>
-					{cart?.map(product => (
-						<CarItem product={product} key={product.id} />
+			{/* cart */}
+			<div className="card">
+				<div className="cardTop">
+					<img alt="" src="https://cdn-icons-png.flaticon.com/512/732/732084.png" />
+					<div>Total: {totalItems}</div>
+				</div>
+
+				<div className="cardTitle">
+					<span>Your cart</span>
+					<span className="card_amount">{totalPrice}</span>
+				</div>
+				<div className="cardBody">
+					{cart.map(cart => (
+						<CarItem key={cart.id} product={cart} />
 					))}
-				</>
-			</Card>
+				</div>
+			</div>
 		</div>
 	)
 }

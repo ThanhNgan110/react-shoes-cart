@@ -1,5 +1,5 @@
 export interface Product {
-	id: string
+	id: number
 	image: string
 	name: string
 	description?: string
@@ -11,7 +11,7 @@ export interface Product {
 export type Cart = Product
 
 export interface CartItem extends Product {
-	cartQuantity: number // item has in cart
+	cartQuantity?: number // item has in cart
 }
 
 export type OptionsQuantity = 'increase' | 'decrease'

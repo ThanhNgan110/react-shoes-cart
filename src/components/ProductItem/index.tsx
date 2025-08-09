@@ -1,3 +1,5 @@
+import React from 'react'
+
 import type { Product } from '../../types'
 
 import { useCartContext } from '../../context/CartContext'
@@ -12,14 +14,14 @@ const ProductItem = ({ product }: ProductItemProps) => {
 
 	return (
 		<>
-			<div className="cartItem">
-				<div className="cartItem_image" style={{ backgroundColor: color }}>
+			<div className="shopItem">
+				<div className="shopItem_image" style={{ backgroundColor: color }}>
 					<img alt={description} src={image} />
 				</div>
-				<div className="cartItem_name">{name}</div>
-				<div className="cartItem_description">{description}</div>
-				<div className="cartItem_bottom">
-					<div className="cartItem_price">{price}</div>
+				<div className="shopItem_name">{name}</div>
+				<div className="shopItem_description">{description}</div>
+				<div className="shopItem_bottom">
+					<div className="shopItem_price">{price}</div>
 					<button className="shopItem_button" onClick={() => handleAddProduct(id)}>
 						ADD TO CART
 					</button>
@@ -29,4 +31,4 @@ const ProductItem = ({ product }: ProductItemProps) => {
 	)
 }
 
-export default ProductItem
+export default React.memo(ProductItem)
